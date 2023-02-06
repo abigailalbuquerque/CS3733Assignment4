@@ -112,7 +112,6 @@ public class ConverterTests {
         assertEquals(testNumber, true);
     }
 
-
     @Test
     public void ArabicToElbonianSampleTest() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("I");
@@ -211,18 +210,6 @@ public class ConverterTests {
         assertEquals(testnumeral, "MMMCCCXXXIII");
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
     @Test(expected = MalformedNumberException.class)
     public void malformedNumberTest() throws MalformedNumberException, ValueOutOfBoundsException {
         throw new MalformedNumberException("TEST");
@@ -259,7 +246,7 @@ public class ConverterTests {
     public void valueOutOfBoundsTest() throws MalformedNumberException, ValueOutOfBoundsException {
         throw new ValueOutOfBoundsException("0");
     }
-
+    
     @Test(expected = ValueOutOfBoundsException.class)
     public void valueOutOfBoundsTest() throws MalformedNumberException, ValueOutOfBoundsException {
         throw new ValueOutOfBoundsException("10000");
