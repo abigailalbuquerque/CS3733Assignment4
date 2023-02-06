@@ -111,7 +111,7 @@ public class ConverterTests {
         boolean testNumber = number.GreatestToLeast("MMMCCCXXXIII");
         assertEquals(testNumber, true);
     }
-/*
+
 
     @Test
     public void ArabicToElbonianSampleTest() throws MalformedNumberException, ValueOutOfBoundsException {
@@ -123,91 +123,91 @@ public class ConverterTests {
     @Test
     public void ArabicToElbonian_1000() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("1000");
-        String testnumeral = numeral.toElbonian(1000);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "N");
     }
 
     @Test
     public void ArabicToElbonian_5000() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("5000");
-        String testnumeral = numeral.toElbonian(5000);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "M");
     }
 
     @Test
     public void ArabicToElbonian_4000() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("4000");
-        String testnumeral = numeral.toElbonian(4000);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "n");
     }
 
     @Test
     public void ArabicToElbonian_100() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("100");
-        String testnumeral = numeral.toElbonian(100);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "C");
     }
 
     @Test
     public void ArabicToElbonian_500() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("500");
-        String testnumeral = numeral.toElbonian(500);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "D");
     }
 
     @Test
     public void ArabicToElbonian_400() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("400");
-        String testnumeral = numeral.toElbonian(400);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "d");
     }
 
     @Test
     public void ArabicToElbonian_10() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("10");
-        String testnumeral = numeral.toElbonian(10);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "X");
     }
 
     @Test
     public void ArabicToElbonian_50() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("50");
-        String testnumeral = numeral.toElbonian(50);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "L");
     }
 
     @Test
     public void ArabicToElbonian_40() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("40");
-        String testnumeral = numeral.toElbonian(40);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "l");
     }
 
     @Test
     public void ArabicToElbonian_1() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("1");
-        String testnumeral = numeral.toElbonian(1);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "I");
     }
 
     @Test
     public void ArabicToElbonian_5() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("5");
-        String testnumeral = numeral.toElbonian(5);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "V");
     }
 
     @Test
     public void ArabicToElbonian_4() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("4");
-        String testnumeral = numeral.toElbonian(4);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "v");
     }
 
     @Test
     public void ArabicToElbonian_3333() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("3333");
-        String testnumeral = numeral.toElbonian(3333);
+        String testnumeral = numeral.toElbonian();
         assertEquals(testnumeral, "MMMCCCXXXIII");
     }
 
@@ -229,12 +229,51 @@ public class ConverterTests {
 
     }
 
+    @Test(expected = MalformedNumberException.class)
+    public void malformedNumberTest() throws MalformedNumberException, ValueOutOfBoundsException {
+        throw new MalformedNumberException("MMMM");
+
+    }
+    @Test(expected = MalformedNumberException.class)
+    public void malformedNumberTest() throws MalformedNumberException, ValueOutOfBoundsException {
+        throw new MalformedNumberException("cD");
+
+    }
+    @Test(expected = MalformedNumberException.class)
+    public void malformedNumberTest() throws MalformedNumberException, ValueOutOfBoundsException {
+        throw new MalformedNumberException("lX");
+
+    }
+    @Test(expected = MalformedNumberException.class)
+    public void malformedNumberTest() throws MalformedNumberException, ValueOutOfBoundsException {
+        throw new MalformedNumberException("vI");
+
+    }
+    @Test(expected = MalformedNumberException.class)
+    public void malformedNumberTest() throws MalformedNumberException, ValueOutOfBoundsException {
+        throw new MalformedNumberException("#M");
+
+    }
+
     @Test(expected = ValueOutOfBoundsException.class)
     public void valueOutOfBoundsTest() throws MalformedNumberException, ValueOutOfBoundsException {
         throw new ValueOutOfBoundsException("0");
     }
 
- */
+    @Test(expected = ValueOutOfBoundsException.class)
+    public void valueOutOfBoundsTest() throws MalformedNumberException, ValueOutOfBoundsException {
+        throw new ValueOutOfBoundsException("10000");
+    }
+
+    @Test(expected = ValueOutOfBoundsException.class)
+    public void valueOutOfBoundsTest() throws MalformedNumberException, ValueOutOfBoundsException {
+        throw new ValueOutOfBoundsException("5.6");
+    }
+
+    @Test(expected = ValueOutOfBoundsException.class)
+    public void valueOutOfBoundsTest() throws MalformedNumberException, ValueOutOfBoundsException {
+        throw new ValueOutOfBoundsException("-8");
+    }
 
     // TODO Add more test cases
 }
