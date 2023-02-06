@@ -105,6 +105,12 @@ public class ConverterTests {
         assertEquals(testNumber, 3333);
     }
 
+    @Test
+    public void greatestToLeast() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter number = new ElbonianArabicConverter("MMMCCCXXXIII");
+        boolean testNumber = number.GreatestToLeast("MMMCCCXXXIII");
+        assertEquals(testNumber, true);
+    }
 /*
 
     @Test

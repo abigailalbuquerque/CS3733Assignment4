@@ -11,7 +11,6 @@ import converter.exceptions.ValueOutOfBoundsException;
  * @version 3/18/17
  */
 public class ElbonianArabicConverter {
-
     // A string that holds the number (Elbonian or Arabic) you would like to convert
     private final String number;
 
@@ -30,8 +29,24 @@ public class ElbonianArabicConverter {
 	 * Leading and trailing spaces should not throw an error.
      */
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
-        // TODO check to see if the number is valid, then set it equal to the string
-        this.number = number;
+
+        String CleanedNumber = number.trim();
+        if (CleanedNumber.matches("\\d+")){
+            if (Integer.parseInt(CleanedNumber) > 9999 || Integer.parseInt(CleanedNumber) < 9999){
+                throw new ValueOutOfBoundsException("Value is out of bounds. Enter value between 0 and 9999.");
+            }
+        }
+        if (!repeatedCertainTimes(CleanedNumber)){
+            throw new MalformedNumberException("Values repeated illegal number of times");
+        }
+        else if (!charThenNoOtherChar(CleanedNumber, "n","M") || !charThenNoOtherChar(CleanedNumber, "d","C") || !charThenNoOtherChar(CleanedNumber, "l","X") ||
+                !charThenNoOtherChar(CleanedNumber, "v","I")){
+            throw new MalformedNumberException("Certain Values can't be used with other values.");
+        }
+        else if (!GreatestToLeast(CleanedNumber)){
+            throw new MalformedNumberException("Letters should be valid Elbonian characters and arranged from greatest to least.");
+        }
+        this.number = CleanedNumber;
     }
 
     /**
@@ -40,7 +55,7 @@ public class ElbonianArabicConverter {
      *
      * @return An arabic value
      */
-    public int toArabic() throws MalformedNumberException{
+    public int toArabic(){
         String[] aListOfCharacters = number.split("");
         int arabicNum = 0;
         for(int i = 0; i < aListOfCharacters.length; i++){
@@ -273,9 +288,10 @@ public class ElbonianArabicConverter {
 
     //Rule 7: Numbers are represented by the letters from the greatest magnitude down to the least magnitude
     public boolean GreatestToLeast(String number) {
-            "M?M?M?N?n?C?D?d?X?L?l?I?V?v?"
-
-        return true;
+        if (number.matches("M?M?M?N?n?C?C?C?D?d?X?X?X?L?l?I?I?I?V?v?")){
+                return true;
+        }
+        return false;
     }
 
 
