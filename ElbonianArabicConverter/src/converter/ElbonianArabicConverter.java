@@ -31,22 +31,36 @@ public class ElbonianArabicConverter {
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
 
         String CleanedNumber = number.trim();
-        if (CleanedNumber.matches("\\d+")){
-            if (Integer.parseInt(CleanedNumber) > 9999 || Integer.parseInt(CleanedNumber) < 9999){
+        if (CleanedNumber.matches("-?\\d+(\\.\\d+)?")){
+            if (Double.parseDouble(CleanedNumber) < 9999 && Double.parseDouble(CleanedNumber) > 0){
+                if (Double.parseDouble(CleanedNumber) % 1 != 0){
+                    throw new MalformedNumberException(CleanedNumber);
+                }
+                else{
+                    this.number = CleanedNumber;
+                }
+            }
+            else{
                 throw new ValueOutOfBoundsException("Value is out of bounds. Enter value between 0 and 9999.");
             }
         }
-        if (!repeatedCertainTimes(CleanedNumber)){
-            throw new MalformedNumberException("Values repeated illegal number of times");
+        else {
+            if (CleanedNumber.matches("^[a-zA-Z]*$")) {
+                if (!repeatedCertainTimes(CleanedNumber)) {
+                    throw new MalformedNumberException("Values repeated illegal number of times");
+                } else if (!charThenNoOtherChar(CleanedNumber, "n", "M") || !charThenNoOtherChar(CleanedNumber, "d", "C") || !charThenNoOtherChar(CleanedNumber, "l", "X") ||
+                        !charThenNoOtherChar(CleanedNumber, "v", "I")) {
+                    throw new MalformedNumberException("Certain Values can't be used with other values.");
+                } else if (!GreatestToLeast(CleanedNumber)) {
+                    throw new MalformedNumberException("Letters should be valid Elbonian characters and arranged from greatest to least.");
+                } else {
+                    this.number = CleanedNumber;
+                }
+            }
+            else{
+                throw new MalformedNumberException(CleanedNumber);
+            }
         }
-        else if (!charThenNoOtherChar(CleanedNumber, "n","M") || !charThenNoOtherChar(CleanedNumber, "d","C") || !charThenNoOtherChar(CleanedNumber, "l","X") ||
-                !charThenNoOtherChar(CleanedNumber, "v","I")){
-            throw new MalformedNumberException("Certain Values can't be used with other values.");
-        }
-        else if (!GreatestToLeast(CleanedNumber)){
-            throw new MalformedNumberException("Letters should be valid Elbonian characters and arranged from greatest to least.");
-        }
-        this.number = CleanedNumber;
     }
 
     /**
@@ -109,103 +123,54 @@ public class ElbonianArabicConverter {
         int arabicNum = Integer.parseInt(number);
         String elbonianNum = "";
         while (arabicNum!=0){
-            while (arabicNum >= 5000) {
+            if (arabicNum >= 5000) {
                 elbonianNum += "N";
                 arabicNum -= 5000;
-                break;
             }
-            while (arabicNum >= 4000) {
+            else if (arabicNum >= 4000) {
                 elbonianNum += "n";
                 arabicNum -= 4000;
-                break;
             }
-            while (arabicNum >= 1000) {
+            else if (arabicNum >= 1000) {
                 elbonianNum += "M";
                 arabicNum -= 1000;
-                break;
             }
-            while (arabicNum >= 500) {
+            else if (arabicNum >= 500) {
                 elbonianNum += "D";
                 arabicNum -= 500;
-                break;
             }
-            while (arabicNum >= 400) {
-                elbonianNum += "D";
+            else if (arabicNum >= 400) {
+                elbonianNum += "d";
                 arabicNum -= 400;
-                break;
             }
-            while (arabicNum >= 100) {
+            else if (arabicNum >= 100) {
                 elbonianNum += "C";
                 arabicNum -= 100;
-                break;
             }
-            while (arabicNum >= 50) {
+            else if (arabicNum >= 50) {
                 elbonianNum += "L";
                 arabicNum -= 50;
-                break;
             }
-            while (arabicNum >= 40) {
+            else if (arabicNum >= 40) {
                 elbonianNum += "l";
                 arabicNum -= 40;
-                break;
             }
-            while (arabicNum >= 10) {
+            else if (arabicNum >= 10) {
                 elbonianNum += "X";
                 arabicNum -= 10;
-                break;
             }
-            while (arabicNum >= 5) {
-                elbonianNum += "V";
-                arabicNum -= 10;
-                break;
-            }
-            while (arabicNum >= 4) {
-                elbonianNum += "v";
-                arabicNum -= 10;
-                break;
-            }
-            while (arabicNum >= 1) {
-                elbonianNum += "I";
-                arabicNum -= 10;
-                break;
-            }
-        }
-        while (arabicNum >= 40) {
-            if(elbonianNum.contains("cC")) break;
-            if(elbonianNum.contains("L")) break;
-            elbonianNum += "lL";
-            arabicNum -= 40;
-        }
-        while (arabicNum >= 10) {
-            if(elbonianNum.contains("lL")) break;
-            if(elbonianNum.contains("cC")) break;
-            elbonianNum += "X";
-            arabicNum -= 10;
-        }
-        while (arabicNum >= 9) {
-            //if(ret.contains("lL")) break;
-            elbonianNum += "xX";
-            arabicNum -= 9;
-        }
-        if (arabicNum >= 5) {
-            if(elbonianNum.contains("xX")){}
-            else {
+            else if (arabicNum >= 5) {
                 elbonianNum += "V";
                 arabicNum -= 5;
             }
-        }
-        while (arabicNum >= 4) {
-            if(elbonianNum.contains("xX")) break;
-            if(elbonianNum.contains("V")) break;
-            elbonianNum += "vV";
-            arabicNum -= 4;
-        }
-        while (arabicNum >= 1) {
-            if(elbonianNum.contains("vV")) break;
-            if(elbonianNum.contains("xX")) break;
-            if(elbonianNum.contains("III")) break;
-            elbonianNum += "I";
-            arabicNum -= 1;
+            else if (arabicNum >= 4) {
+                elbonianNum += "v";
+                arabicNum -= 4;
+            }
+            else if (arabicNum >= 1) {
+                elbonianNum += "I";
+                arabicNum -= 1;
+            }
         }
         return elbonianNum;
     }
