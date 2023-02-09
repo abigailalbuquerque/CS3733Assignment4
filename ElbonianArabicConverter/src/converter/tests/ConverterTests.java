@@ -284,21 +284,21 @@ public class ConverterTests {
     public void validSpacesTest4() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter number = new ElbonianArabicConverter(" M");
         int testNumber = number.toArabic();
-        assertEquals(testNumber, "1000");
+        assertEquals(testNumber, 1000);
     }
 
     @Test
     public void validSpacesTest5() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter number = new ElbonianArabicConverter("M ");
         int testNumber = number.toArabic();
-        assertEquals(testNumber, "1000");
+        assertEquals(testNumber, 1000);
     }
 
     @Test
     public void validSpacesTest6() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter number = new ElbonianArabicConverter(" M ");
         int testNumber = number.toArabic();
-        assertEquals(testNumber, "1000");
+        assertEquals(testNumber, 1000);
     }
 
 
