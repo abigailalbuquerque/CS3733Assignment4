@@ -474,4 +474,24 @@ public class ConverterTests {
     public void outOfBounds6Test() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("-40000");
     }
+
+    @Test(expected = MalformedNumberException.class)
+    public void specialCharTest() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("900#");
+    }
+
+    @Test(expected = MalformedNumberException.class)
+    public void specialCharTest2() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("00?");
+    }
+
+    @Test(expected = MalformedNumberException.class)
+    public void specialCharTest3() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("001");
+    }
+
+    @Test(expected = MalformedNumberException.class)
+    public void specialCharTest4() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("   ");
+    }
 }

@@ -31,6 +31,15 @@ public class ElbonianArabicConverter {
     public ElbonianArabicConverter(String number) throws MalformedNumberException, ValueOutOfBoundsException {
 
         String CleanedNumber = number.trim();
+
+        if (CleanedNumber.isEmpty()){
+            throw new MalformedNumberException(CleanedNumber);
+        }
+        if (!(CleanedNumber.equals("0"))){
+            if(CleanedNumber.startsWith("0")){
+                throw new MalformedNumberException(CleanedNumber);
+            }
+        }
         if (CleanedNumber.matches("-?\\d+(\\.\\d+)?")){
             if (Double.parseDouble(CleanedNumber) < 10000 && Double.parseDouble(CleanedNumber) > 0){
                 if (Double.parseDouble(CleanedNumber) % 1 != 0){
