@@ -1,10 +1,10 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/ElbonianArabicConverter/lib/junit-4.13.2-javadoc.jar!/" />
       <root url="jar://$PROJECT_DIR$/ElbonianArabicConverter/lib/hamcrest-core-1.3-javadoc.jar!/" />
-      <root url="jar://$PROJECT_DIR$/ElbonianArabicConverter/lib/hamcrest-core-1.3.jar!/" />
       <root url="jar://$PROJECT_DIR$/ElbonianArabicConverter/lib/junit-4.13.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ElbonianArabicConverter/lib/hamcrest-core-1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/ElbonianArabicConverter/lib/junit-4.13.2-javadoc.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
