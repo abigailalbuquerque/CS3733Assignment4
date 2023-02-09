@@ -442,6 +442,17 @@ public class ConverterTests {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("lkDfg");
     }
 
+    //decimal test
+    @Test(expected = MalformedNumberException.class)
+    public void decimal1Test() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("5.6");
+    }
+
+    @Test(expected = MalformedNumberException.class)
+    public void decimal2Test() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("3678.87");
+    }
+
     //test cases for ValueOutOfBoundsException
     @Test(expected = ValueOutOfBoundsException.class)
     public void outOfBounds1Test() throws MalformedNumberException, ValueOutOfBoundsException {
@@ -453,25 +464,15 @@ public class ConverterTests {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("10000");
     }
 
-    //decimal test
-    @Test(expected = MalformedNumberException.class)
-    public void outOfBounds3Test() throws MalformedNumberException, ValueOutOfBoundsException {
-        ElbonianArabicConverter converter = new ElbonianArabicConverter("5.6");
-    }
-
-    @Test(expected = MalformedNumberException.class)
-    public void outOfBounds4Test() throws MalformedNumberException, ValueOutOfBoundsException {
-        ElbonianArabicConverter converter = new ElbonianArabicConverter("3678.87");
-    }
 
     //negative tests
     @Test(expected = ValueOutOfBoundsException.class)
-    public void outOfBounds5Test() throws MalformedNumberException, ValueOutOfBoundsException {
+    public void outOfBounds3Test() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("-8");
     }
 
     @Test(expected = ValueOutOfBoundsException.class)
-    public void outOfBounds6Test() throws MalformedNumberException, ValueOutOfBoundsException {
+    public void outOfBounds4Test() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("-40000");
     }
 }
