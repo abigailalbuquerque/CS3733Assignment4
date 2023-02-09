@@ -260,25 +260,48 @@ public class ConverterTests {
     }
 
     @Test
-    public void validspacesTest1() throws MalformedNumberException, ValueOutOfBoundsException {
+    public void validSpacesTest1() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter(" 1000");
         String testNumeral = numeral.toElbonian();
         assertEquals(testNumeral, "M");
     }
 
     @Test
-    public void validspacesTest2() throws MalformedNumberException, ValueOutOfBoundsException {
+    public void validSpacesTest2() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter(" 1000 ");
         String testNumeral = numeral.toElbonian();
         assertEquals(testNumeral, "M");
     }
 
     @Test
-    public void validspacesTest3() throws MalformedNumberException, ValueOutOfBoundsException {
+    public void validSpacesTest3() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter numeral = new ElbonianArabicConverter("1000 ");
         String testNumeral = numeral.toElbonian();
         assertEquals(testNumeral, "M");
     }
+
+    @Test
+    public void validSpacesTest4() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter number = new ElbonianArabicConverter(" M");
+        int testNumber = number.toArabic();
+        assertEquals(testNumber, "1000");
+    }
+
+    @Test
+    public void validSpacesTest5() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter number = new ElbonianArabicConverter("M ");
+        int testNumber = number.toArabic();
+        assertEquals(testNumber, "1000");
+    }
+
+    @Test
+    public void validSpacesTest6() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter number = new ElbonianArabicConverter(" M ");
+        int testNumber = number.toArabic();
+        assertEquals(testNumber, "1000");
+    }
+
+
 
     //@Test(expected = MalformedNumberException.class)
     //public void malformedNumberTest() throws MalformedNumberException, ValueOutOfBoundsException {
