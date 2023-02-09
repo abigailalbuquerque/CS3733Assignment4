@@ -32,7 +32,7 @@ public class ElbonianArabicConverter {
 
         String CleanedNumber = number.trim();
         if (CleanedNumber.matches("-?\\d+(\\.\\d+)?")){
-            if (Double.parseDouble(CleanedNumber) < 9999 && Double.parseDouble(CleanedNumber) > 0){
+            if (Double.parseDouble(CleanedNumber) < 10000 && Double.parseDouble(CleanedNumber) > 0){
                 if (Double.parseDouble(CleanedNumber) % 1 != 0){
                     throw new MalformedNumberException(CleanedNumber);
                 }
@@ -253,11 +253,9 @@ public class ElbonianArabicConverter {
 
     //Rule 7: Numbers are represented by the letters from the greatest magnitude down to the least magnitude
     public boolean GreatestToLeast(String number) {
-        if (number.matches("M?M?M?N?n?C?C?C?D?d?X?X?X?L?l?I?I?I?V?v?")){
+        if (number.matches("N?n?M?M?M?D?d?C?C?C?L?l?X?X?X?V?v?I?I?I?")){
                 return true;
         }
         return false;
     }
-
-
 }

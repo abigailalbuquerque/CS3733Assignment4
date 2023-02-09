@@ -91,6 +91,34 @@ public class ConverterTests {
     }
 
     @Test
+    public void ElbonianToArabic_NMDCVI() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter number = new ElbonianArabicConverter("NMDCVI");
+        int testNumber = number.toArabic();
+        assertEquals(testNumber, 6606);
+    }
+
+    @Test
+    public void ElbonianToArabic_MV() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter number = new ElbonianArabicConverter("MV");
+        int testNumber = number.toArabic();
+        assertEquals(testNumber, 1005);
+    }
+
+    @Test
+    public void ElbonianToArabic_9999() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter number = new ElbonianArabicConverter("NnDdLlVv");
+        int testNumber = number.toArabic();
+        assertEquals(testNumber, 9999);
+    }
+
+    @Test
+    public void ArabicToElbonian_9999() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter number = new ElbonianArabicConverter("9999");
+        String testNumber = number.toElbonian();
+        assertEquals(testNumber, "NnDdLlVv");
+    }
+
+    @Test
     public void ElbonianToArabic_l() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter number = new ElbonianArabicConverter("l");
         int testNumber = number.toArabic();
@@ -273,6 +301,26 @@ public class ConverterTests {
     }
 
     @Test(expected = MalformedNumberException.class)
+    public void Rule1_I1() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter(" MIIII");
+    }
+
+    @Test(expected = MalformedNumberException.class)
+    public void Rule1_M() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter(" MMMMI");
+    }
+
+    @Test(expected = MalformedNumberException.class)
+    public void Rule7_M() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter(" MMIM");
+    }
+
+    @Test(expected = MalformedNumberException.class)
+    public void Rule1_I2() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter(" MIIII");
+    }
+
+    @Test(expected = MalformedNumberException.class)
     public void spacesTest4() throws MalformedNumberException, ValueOutOfBoundsException {
         ElbonianArabicConverter converter = new ElbonianArabicConverter(" XXXw");
     }
@@ -312,7 +360,7 @@ public class ConverterTests {
 
     @Test(expected = MalformedNumberException.class)
     public void IIIITest() throws MalformedNumberException, ValueOutOfBoundsException {
-        ElbonianArabicConverter converter = new ElbonianArabicConverter("IIII");
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("IIIdI");
     }
 
     //these letters can not appear together
